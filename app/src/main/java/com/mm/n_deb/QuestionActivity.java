@@ -52,4 +52,12 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void onNextClick(View view){
+        displayQuestion(true);
+    }
+
+    public void onPrevClick(View view){
+        displayQuestion(false);
+    }
 }

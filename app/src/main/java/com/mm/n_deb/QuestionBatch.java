@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,23 +22,24 @@ import java.util.Map;
 
 public class QuestionBatch {
     private static Map<String, QuestionBatch> _batchCache = new HashMap<>();
-    public String _range;
-    public LinkedList<Question> _questionsF;
-    public LinkedList<Question> _questionsB;
+    private String _range;
+    private LinkedList<Question> _questions;
+    private int _pos = 0;
 
 
     public QuestionBatch(String range,
                          List<Question> questions){
         _range = range;
-        _questionsF = new LinkedList<>(questions);
-        _questionsB = new LinkedList<>();
+        _questions = new LinkedList<>(questions);
     }
 
     private static QuestionBatch getBatchForRange(Context context, String range){
         if(_batchCache.containsKey(range)){
             return _batchCache.get(range);
         } else {
-            InputStream is = context.getResources().openRawResource(R.raw.r1t100);
+            int id = context.getResources().getIdentifier("r1t100",
+                    "raw", context.getPackageName());
+            InputStream is = context.getResources().openRawResource(id);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String line;
             JsonParser parser = new JsonParser();
@@ -69,25 +69,25 @@ public class QuestionBatch {
         }
     }
 
-    public static Question getQuestion(Context con, String range, boolean forward){
+    static Question getQuestion(Context con, String range, boolean forward){
 
         QuestionBatch batch = getBatchForRange(con, range);
+        if(batch == null || batch._questions.size() == 0){
+            return new Question("", new ArrayList<String>(), "");
+        }
         if(forward){
-            if(batch._questionsF.isEmpty()){
-                LinkedList<Question> tmp = batch._questionsF;
-                batch._questionsF = batch._questionsB;
-                batch._questionsB = tmp;
-            }
-            Question q = batch._questionsF.peekFirst();
-            batch._questionsB.addLast(batch._questionsF.pollFirst());
-            return q;
-        } else {
-            if(batch._questionsB.isEmpty()){
-                return batch._questionsF.peekFirst();
+            if(batch._pos < batch._questions.size()){
+                batch._pos++;
+                return batch._questions.get(batch._pos);
             } else {
-                Question q = batch._questionsB.peekLast();
-                batch._questionsF.addFirst(batch._questionsB.pollLast());
-                return q;
+                return batch._questions.get(batch._questions.size()-1);
+            }
+        } else {
+            if(batch._pos - 1 >= 0){
+                batch._pos--;
+                return batch._questions.get(batch._pos);
+            } else {
+                return batch._questions.get(0);
             }
         }
     }
