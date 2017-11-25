@@ -12,10 +12,12 @@ public class Question {
     private final String _answer;
     private int _totalAttempts;
     private int _correctAttempts;
+    private boolean _isVisited;
 
     public Question(String q,
                     List<String> opts,
                     String ans){
+        _isVisited = false;
         _question = q;
         _options = opts;
         _answer = ans;
@@ -31,6 +33,14 @@ public class Question {
 
     public List<String> getOptions() {
         return _options;
+    }
+
+    public boolean isVisited(){
+        return _isVisited;
+    }
+
+    public void setVisited(boolean v){
+        _isVisited = true;
     }
 
     public void attempted(boolean success){

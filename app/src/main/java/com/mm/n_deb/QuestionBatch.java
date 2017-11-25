@@ -76,7 +76,7 @@ public class QuestionBatch {
             return new Question("", new ArrayList<String>(), "");
         }
         if(forward){
-            if(batch._pos < batch._questions.size()){
+            if(batch._pos < batch._questions.size() - 1){
                 batch._pos++;
                 return batch._questions.get(batch._pos);
             } else {
