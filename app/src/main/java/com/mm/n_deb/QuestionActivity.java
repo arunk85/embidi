@@ -22,7 +22,7 @@ public class QuestionActivity extends AppCompatActivity {
 
     public void displayQuestion(boolean forwardDir){
         TextView textView = findViewById(R.id.textView);
-        final Question q = QuestionBatch.getQuestion(this, "r1t100", forwardDir);
+        final DBQuestion q = QuestionBatch.getQuestion(this, "r1t100", forwardDir);
         textView.setText(q.getQuestion());
 
         final ListView listView = findViewById(R.id.listView);
@@ -31,7 +31,7 @@ public class QuestionActivity extends AppCompatActivity {
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
-                q.getOptions());
+                q.getListOption());
 
         listView.setAdapter(arrayAdapter);
 
@@ -40,7 +40,7 @@ public class QuestionActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                if(q.getOptions().get(position).equals(q.getAnswer())){
+                if(q.getListOption().get(position).equals(q.getAnswer())){
                     Toast.makeText(QuestionActivity.this,
                             "Correct",
                             Toast.LENGTH_SHORT).show();
