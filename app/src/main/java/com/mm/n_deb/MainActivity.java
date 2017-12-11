@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void showQuestions(View view){
         Intent intent = new Intent(this, QuestionActivity.class);
+        DbUtil dbUtil = new DbUtil(this);
+        dbUtil.loadDbFromFile("r1t100");
         startActivity(intent);
     }
 }

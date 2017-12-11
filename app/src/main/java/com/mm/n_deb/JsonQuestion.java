@@ -18,8 +18,8 @@ public class JsonQuestion {
                     @JsonProperty("question") String question,
                     @JsonProperty("options") List<String> options,
                     @JsonProperty("answer") String answer,
-                    @JsonProperty("correct_attempts") Integer correctAttempts,
-                    @JsonProperty("failed_attempts") Integer failedAttempts,
+                    @JsonProperty("correctAttempts") Integer correctAttempts,
+                    @JsonProperty("failedAttempts") Integer failedAttempts,
                     @JsonProperty("visited") boolean visited,
                     @JsonProperty("batch") String batch) {
         _id = id;

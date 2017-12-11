@@ -22,7 +22,7 @@ public class QuestionActivity extends AppCompatActivity {
 
     public void displayQuestion(boolean forwardDir){
         TextView textView = findViewById(R.id.textView);
-        final DBQuestion q = QuestionBatch.getQuestion(this, "r1t100", forwardDir);
+        final DBQuestion q = QuestionBatch.getQuestion(this, "testBatch", forwardDir);
         textView.setText(q.getQuestion());
 
         final ListView listView = findViewById(R.id.listView);
