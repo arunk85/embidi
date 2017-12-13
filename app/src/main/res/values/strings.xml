@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">N-deb</string>
     <string name="questions_button">Questions</string>
+    <string name="title_activity_batches">Batches</string>
 </resources>

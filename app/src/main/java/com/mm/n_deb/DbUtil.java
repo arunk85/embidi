@@ -23,6 +23,10 @@ public class DbUtil {
         mapper.registerModule(new Jdk8Module());
     }
 
+    public Context getContext(){
+        return _context;
+    }
+
     public void loadDbFromFile(String file) {
         int id = _context.getResources().getIdentifier(file,
                 "raw", _context.getPackageName());
