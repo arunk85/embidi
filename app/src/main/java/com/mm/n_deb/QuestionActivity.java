@@ -50,7 +50,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         @Override
         protected DBQuestion doInBackground(Boolean... forwardDir) {
-            final DBQuestion q = QuestionBatch.getQuestion(QuestionActivity.this, "testBatch", forwardDir[0]);
+            final DBQuestion q = QuestionBatch.getQuestion(QuestionActivity.this, "tbatch", forwardDir[0]);
             return q;
         }
 

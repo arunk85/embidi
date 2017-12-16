@@ -6,9 +6,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.List;
 
 
@@ -18,6 +21,7 @@ public class DbUtil {
     private final ObjectMapper mapper = new ObjectMapper();
 
     public DbUtil(Context cx) {
+//        /data/user/0/com.mm.n_deb/databases/questiondatabase
         _context = cx;
         _db = QDatabase.getDatabase(_context);
         mapper.registerModule(new Jdk8Module());
@@ -28,21 +32,44 @@ public class DbUtil {
     }
 
     public void loadDbFromFile(String file) {
-        int id = _context.getResources().getIdentifier(file,
-                "raw", _context.getPackageName());
-        InputStream is = _context.getResources().openRawResource(id);
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String line;
+        String dbPath = _context.getDatabasePath("questionsdatabase").toString();
+
         try {
-            while ((line = br.readLine()) != null) {
-                JsonQuestion jq = mapper.readValue(line, JsonQuestion.class);
-                DBQuestion dbq = jq.getAsDbQuestion();
-                _db.dbQuestionDao().addQuestion(dbq);
+            InputStream myInput = _context.getAssets().open("questionsdatabase");
+            //Open the empty dbPath as the output stream
+            OutputStream myOutput = new FileOutputStream(dbPath);
+
+            //transfer bytes from the inputfile to the outputfile
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = myInput.read(buffer)) > 0) {
+                myOutput.write(buffer, 0, length);
             }
 
+            //Close the streams
+            myOutput.flush();
+            myOutput.close();
+            myInput.close();
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        int id = _context.getResources().getIdentifier(file,
+//                "raw", _context.getPackageName());
+//        InputStream is = _context.getResources().openRawResource(id);
+//        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+//        String line;
+//        try {
+//            while ((line = br.readLine()) != null) {
+//                JsonQuestion jq = mapper.readValue(line, JsonQuestion.class);
+//                DBQuestion dbq = jq.getAsDbQuestion();
+//                _db.dbQuestionDao().addQuestion(dbq);
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public List<DBQuestion> getQuestionsForBatch(String batchId) {
