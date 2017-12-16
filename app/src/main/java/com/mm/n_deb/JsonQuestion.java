@@ -1,7 +1,5 @@
 package com.mm.n_deb;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 
 public class JsonQuestion {
@@ -14,14 +12,14 @@ public class JsonQuestion {
     private boolean _visited;
     private String _batch;
 
-    public JsonQuestion(@JsonProperty("id") String id,
-                    @JsonProperty("question") String question,
-                    @JsonProperty("options") List<String> options,
-                    @JsonProperty("answer") String answer,
-                    @JsonProperty("correctAttempts") Integer correctAttempts,
-                    @JsonProperty("failedAttempts") Integer failedAttempts,
-                    @JsonProperty("visited") boolean visited,
-                    @JsonProperty("batch") String batch) {
+    public JsonQuestion(String id,
+                    String question,
+                    List<String> options,
+                    String answer,
+                    Integer correctAttempts,
+                    Integer failedAttempts,
+                    boolean visited,
+                    String batch) {
         _id = id;
         _question = question;
         _options = options;

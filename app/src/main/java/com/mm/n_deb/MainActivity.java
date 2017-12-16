@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            dbUtil.loadDbFromFile("r1t100");
+            dbUtil.loadDbFromFile();
             return null;
         }
 
