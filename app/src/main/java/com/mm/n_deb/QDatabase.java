@@ -22,7 +22,6 @@ public abstract class QDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             INSTANCE =
                     Room.databaseBuilder(context, QDatabase.class, "questionsdatabase")
-//                            .allowMainThreadQueries()
                             .fallbackToDestructiveMigration()
                             .build();
         }

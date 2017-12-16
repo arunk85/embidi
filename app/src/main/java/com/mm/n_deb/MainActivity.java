@@ -1,13 +1,10 @@
 package com.mm.n_deb;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,12 +12,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
-//        try {
-//            dataBaseHelper.createDataBase();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public void showQuestions(View view){
@@ -43,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void v) {
-            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+            Intent intent = new Intent(MainActivity.this, BatchActivity.class);
             MainActivity.this.startActivity(intent);
         }
     }

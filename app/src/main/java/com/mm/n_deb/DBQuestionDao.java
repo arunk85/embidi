@@ -24,4 +24,7 @@ public interface DBQuestionDao {
 
     @Query("select count(*) from dbquestion")
     int getCount();
+
+    @Query("select distinct batch from dbquestion")
+    List<String> getBatches();
 }

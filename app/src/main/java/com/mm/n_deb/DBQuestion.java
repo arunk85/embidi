@@ -68,20 +68,6 @@ public class DBQuestion {
         return options;
     }
 
-    public JsonQuestion getAsJsonQuestion(){
-        if(listOptions == null || listOptions.isEmpty()){
-            listOptions = getOptionAsList();
-        }
-        return new JsonQuestion(id,
-                question,
-                listOptions,
-                answer,
-                correctAttempts,
-                failedAttempts,
-                visited,
-                batch);
-    }
-
     @NonNull
     public String getId() {
         return id;

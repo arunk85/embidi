@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by arun on 23/11/17.
+ * Class representing a set of questions. Also holds a cache for the batch.
  */
 
 class QuestionBatch {

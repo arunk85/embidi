@@ -2,4 +2,10 @@
     <string name="app_name">N-deb</string>
     <string name="questions_button">Questions</string>
     <string name="title_activity_batches">Batches</string>
+    <string name="questions_attempted_text">Questions Attempted</string>
+    <string name="total_incorrect_attempts">Total Incorrect Attempts</string>
+    <string name="review_incorrect_button">Review Incorrect</string>
+    <string name="tagged_question_butt">Tagged Questions</string>
+    <string name="all_questions_butt">Show All</string>
+    <string name="batch">Batch</string>
 </resources>

@@ -12,7 +12,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Batches extends AppCompatActivity {
+public class BatchActivity extends AppCompatActivity {
 
     GridView gridView;
 

@@ -36,3 +36,6 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:+'
     implementation 'com.android.support:design:26.+'
 }
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
