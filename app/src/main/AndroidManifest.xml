@@ -17,11 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuestionActivity" />
-        <activity
-            android:name=".BatchActivity"
-            android:label="@string/title_activity_batches"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".batch_info"></activity>
+        <activity android:name=".QuestionBatchActivity" />
+        <activity android:name=".QuestionBatchInfoActivity"></activity>
     </application>
 
 </manifest>

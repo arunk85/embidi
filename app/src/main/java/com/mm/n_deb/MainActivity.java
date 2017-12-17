@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void showQuestions(View view){
+    public void showBatches(View view){
         LoadTask dbLoader = new LoadTask();
         dbLoader.execute();
     }
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void v) {
-            Intent intent = new Intent(MainActivity.this, BatchActivity.class);
+            Intent intent = new Intent(MainActivity.this, QuestionBatchActivity.class);
             MainActivity.this.startActivity(intent);
         }
     }

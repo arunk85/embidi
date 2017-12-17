@@ -1,5 +1,6 @@
 package com.mm.n_deb;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,17 +17,19 @@ import java.util.List;
 
 public class QuestionActivity extends AppCompatActivity {
 
+    String sBatch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+        Intent intent = getIntent();
+        sBatch = intent.getStringExtra("selectedBatch");
         displayQuestion(false);
     }
 
     public void displayQuestion(boolean forwardDir){
         LoadBatch lb = new LoadBatch();
         lb.execute(forwardDir);
-
     }
 
     public void onNextClick(View view){
@@ -49,7 +52,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         @Override
         protected DBQuestion doInBackground(Boolean... forwardDir) {
-            final DBQuestion q = QuestionBatch.getQuestion(QuestionActivity.this, "tbatch", forwardDir[0]);
+            final DBQuestion q = QuestionBatch.getQuestion(QuestionActivity.this, sBatch, forwardDir[0]);
             return q;
         }
 

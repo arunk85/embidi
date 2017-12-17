@@ -13,6 +13,7 @@ import java.util.List;
 public class DbUtil {
     private Context _context;
     private QDatabase _db;
+    public static String[] batchNames;
 
     public DbUtil(Context cx) {
         _context = cx;
@@ -21,24 +22,30 @@ public class DbUtil {
 
     public void loadDbFromFile() {
         int rowCount = _db.dbQuestionDao().getCount();
-        if(rowCount != 0) return ;
-        String dbPath = _context.getDatabasePath("questionsdatabase").toString();
+        if(rowCount == 0){
+            String dbPath = _context.getDatabasePath("questionsdatabase").toString();
 
-        try {
-            InputStream myInput = _context.getAssets().open("questionsdatabase");
-            OutputStream myOutput = new FileOutputStream(dbPath);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = myInput.read(buffer)) > 0) {
-                myOutput.write(buffer, 0, length);
+            try {
+                InputStream myInput = _context.getAssets().open("questionsdatabase");
+                OutputStream myOutput = new FileOutputStream(dbPath);
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = myInput.read(buffer)) > 0) {
+                    myOutput.write(buffer, 0, length);
+                }
+                myOutput.flush();
+                myOutput.close();
+                myInput.close();
+            }catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            myOutput.flush();
-            myOutput.close();
-            myInput.close();
-        }catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        if(batchNames == null || batchNames.length == 0){
+            List<String> batchNamesList = getBatchNames();
+            batchNames = new String[batchNamesList.size()];
+            batchNames = batchNamesList.toArray(batchNames);
         }
     }
 

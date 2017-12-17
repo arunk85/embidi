@@ -39,24 +39,12 @@ public class BatchAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         final String item = items[i];
-
-        // 2
         if (view == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(cxt);
             view = layoutInflater.inflate(R.layout.batch_grid_item, null);
         }
-
-        // 3
-
-        final TextView nameTextView = (TextView)view.findViewById(R.id.textView2);
-
-
-
-        // 4
-
+        final TextView nameTextView = view.findViewById(R.id.textView2);
         nameTextView.setText(item);
-
-
         return view;
     }
 }
